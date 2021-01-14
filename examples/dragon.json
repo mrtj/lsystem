@@ -1,0 +1,16 @@
+{
+    "angle": 90,
+    "rules": {
+        "X": "X+YF+",
+        "Y": "-FX-Y"
+    },
+    "axiom": "FX",
+    "draw": {
+        "start_point": [0.2, 0.6],
+        "default_order": 12,
+        "default_unit": 6,
+        "corner_radius": 3,
+        "seq_colors": ["#F60000", "#FFEE00", "#4DE94C", "#3783FF"],
+        "seq_color_order": 10
+    }
+}

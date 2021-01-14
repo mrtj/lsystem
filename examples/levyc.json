@@ -1,0 +1,12 @@
+{
+    "angle": 45,
+    "rules": {
+        "F": "+F--F+"
+    },
+    "axiom": "F",
+    "draw": {
+        "start_point": [0.3, -0.6],
+        "default_order": 15,
+        "default_unit": 2
+    }
+}

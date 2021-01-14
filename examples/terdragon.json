@@ -1,0 +1,15 @@
+{
+    "angle": 120,
+    "rules": {
+        "F": "F+F-F"
+    },
+    "axiom": "F",
+    "draw": {
+        "start_point": [-0.6, 0.6],
+        "default_order": 8,
+        "default_unit": 4,
+        "corner_radius": 2,
+        "seq_colors": ["#F60000", "#FF8C00", "#FFEE00", "#4DE94C", "#3783FF", "#4815AA"],
+        "seq_color_order": 6
+    }
+}

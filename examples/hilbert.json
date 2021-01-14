@@ -1,0 +1,15 @@
+{
+    "angle": 90,
+    "rules": {
+        "X": "+YF-XFX-FY+",
+        "Y": "-XF+YFY+FX-"
+    },
+    "axiom": "X",
+    "draw": {
+        "start_point": [0.8, -1],
+        "default_order": 7,
+        "default_unit": 5,
+        "seq_colors": ["#F60000", "#FFEE00", "#4DE94C", "#3783FF"],
+        "seq_color_order": 5
+    }
+}

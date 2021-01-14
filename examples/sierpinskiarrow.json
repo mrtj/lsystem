@@ -1,0 +1,14 @@
+{
+    "angle": 60,
+    "rules": {
+        "A": "B-A-B",
+        "B": "A+B+A"
+    },
+    "axiom": "A",
+    "draw": {
+        "start_point": [0.9, -0.9],
+        "default_order": 8,
+        "default_unit": 2,
+        "fill_order": 3
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "angle": 85,
+    "rules": {
+        "F": "F+F--F+F"
+    },
+    "axiom": "F",
+    "draw": {
+        "start_point": [-0.95, -0.5],
+        "start_heading": 90,
+        "default_order": 8,
+        "default_unit": 1.5
+    }
+}

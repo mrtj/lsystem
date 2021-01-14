@@ -1,0 +1,15 @@
+{
+    "angle": 20,
+    "rules": {
+        "F": "F[+F][-F]"
+    },
+    "axiom": "F",
+    "rand_angle": 0.4,
+    "rand_unit": 0.4,
+    "draw": {
+        "start_point": [0, -0.5],
+        "start_heading": 0,
+        "default_order": 6,
+        "default_unit": 50
+    }
+}
