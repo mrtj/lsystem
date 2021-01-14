@@ -37,26 +37,26 @@ class LSystem:
     '''
     
     DEFAULT_ACTIONS = {
-        'A': 'draw', 'B': 'draw', 'C': 'draw', 
-        'D': 'draw', 'E': 'draw', 'F': 'draw',
-        'G': 'move', 'H': 'move', 'I': 'move',
-        'J': 'move', 'K': 'move', 'L': 'move',
-        '+': 'left',
-        '-': 'right',
-        '[': 'push',
-        ']': 'pop'
+        'A': 'draw_forward', 'B': 'draw_forward', 'C': 'draw_forward', 
+        'D': 'draw_forward', 'E': 'draw_forward', 'F': 'draw_forward',
+        'G': 'move_forward', 'H': 'move_forward', 'I': 'move_forward',
+        'J': 'move_forward', 'K': 'move_forward', 'L': 'move_forward',
+        '+': 'left_turn',
+        '-': 'right_turn',
+        '[': 'save_state',
+        ']': 'restore_state'
     }
 
-    def __init__(self, angle=0, rules={}, axiom='', actions={}, 
+    def __init__(self, rules={}, axiom='', angle=0, actions={}, 
                  rand_unit=0, rand_angle=0, draw={}, trace=False, **kwargs):
         ''' Creates a new L-System renderer.
         
         Params:
+          - rules: The substitution rules map of the L-System.
+          - axiom: The initial axiom string of the L-System
           - angle: The angle used for turning in degrees
           - actions: The symbol -> action map. If None, LSystem.DEFAULT_ACTIONS
                 map will be used.
-          - rules: The substitution rules map of the L-System.
-          - axiom: The initial axiom string of the L-System
           - rand_unit: randomize the unit length at each iteration by this 
                 percentage. Defaults to 0.
           - rand_angle: randomize the turn angle at each iteration by this 
@@ -106,6 +106,7 @@ class LSystem:
         self.turnstack = 0
         self.max_x, self.max_y = (0, 0)
         self.color_index = -1
+        self._initpen()
 
     def _initpen(self):
         self.pen = turtle.Turtle(visible=False)
@@ -187,17 +188,23 @@ class LSystem:
         self.turnstack = turnstack
 
     def call_action(self, action, unit):
+        ''' Executes an action. 
+        
+        Params:
+            - action: the name of the action as referred by the actions map.
+            - unit: Number of pixels to be used in forward draw.
+        '''
         if action == 'noop':
             return
         if self.trace:
             print(f'action: {action} unit: {unit}')
         map = {
-            'draw': self.draw,
-            'move': self.move,
-            'left': self.left,
-            'right': self.right,
-            'push': self.push,
-            'pop': self.pop
+            'draw_forward': self.draw,
+            'move_forward': self.move,
+            'left_turn': self.left,
+            'right_turn': self.right,
+            'save_state': self.push,
+            'restore_state': self.pop
         }
         if action in map:
             map[action](unit)
@@ -256,10 +263,10 @@ if __name__ == '__main__':
     exit_msg = 'Click on the drawing window to exit.'
     parser = argparse.ArgumentParser(description='L-System renderer', 
                                      epilog=exit_msg)
-    parser.add_argument('input_file', type=str, help='The json definition of the L-System')
-    parser.add_argument('-u', '--unit', type=float, help='The base unit of the drawing in pixels')
-    parser.add_argument('-o', '--order', type=int, help='The depth of the recursion')
-    parser.add_argument('-t', '--trace', action='store_true', help='Print tracing info to stdout')
+    parser.add_argument('input_file', type=str, help='json definition of the L-System')
+    parser.add_argument('-u', '--unit', type=float, help='base unit of the drawing in pixels')
+    parser.add_argument('-o', '--order', type=int, help='depth of the recursion')
+    parser.add_argument('-t', '--trace', action='store_true', help='print tracing info to stdout')
     args = vars(parser.parse_args())
     LSystem.from_json(args['input_file'], trace=args['trace']).demo(**args)
     print(exit_msg)

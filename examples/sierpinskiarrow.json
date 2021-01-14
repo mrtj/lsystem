@@ -6,7 +6,8 @@
     },
     "axiom": "A",
     "draw": {
-        "start_point": [0.9, -0.9],
+        "start_point": [-0.6, -0.75],
+        "start_heading": 90,
         "default_order": 8,
         "default_unit": 2,
         "fill_order": 3

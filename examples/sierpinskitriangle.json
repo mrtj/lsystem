@@ -6,9 +6,10 @@
     },
     "axiom": "A-B-B",
     "draw": {
-        "start_point": [-0.9, -0.9],
+        "start_point": [0.65, -0.8],
+        "start_heading": -90,
         "default_order": 7,
-        "default_unit": 5,
+        "default_unit": 4,
         "fill_order": 2
     }
 }

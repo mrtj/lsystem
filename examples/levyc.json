@@ -5,7 +5,8 @@
     },
     "axiom": "F",
     "draw": {
-        "start_point": [0.3, -0.6],
+        "start_point": [0.45, 0.5],
+        "start_heading": -90,
         "default_order": 15,
         "default_unit": 2
     }
