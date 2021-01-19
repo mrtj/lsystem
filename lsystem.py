@@ -47,7 +47,7 @@ class LSystem:
         ']': 'restore_state'
     }
 
-    def __init__(self, rules={}, axiom='', angle=0, actions={}, 
+    def __init__(self, rules={}, axiom='', angle=0, left_angle=None, right_angle=None, actions={}, 
                  rand_unit=0, rand_angle=0, draw={}, trace=False, **kwargs):
         ''' Creates a new L-System renderer.
         
@@ -55,15 +55,19 @@ class LSystem:
           - rules: The substitution rules map of the L-System.
           - axiom: The initial axiom string of the L-System
           - angle: The angle used for turning in degrees
+          - left_angle: The angle used for turning left in degrees. Defaults to
+                None in which case `angle` will be used.
+          - right_angle: The angle used for turning right in degrees. Defaults to
+                None in which case `angle` will be used.
           - actions: The symbol -> action map. If None, LSystem.DEFAULT_ACTIONS
                 map will be used.
           - rand_unit: randomize the unit length at each iteration by this 
                 percentage. Defaults to 0.
           - rand_angle: randomize the turn angle at each iteration by this 
-              percentage. Defaults to 0.
+                percentage. Defaults to 0.
           - draw: additional parameters for drawing the default curve.
           - trace: print debugging messages to stdout while rendering the 
-              L-System.
+                L-System.
               
         Draw map keys:
           - start_point: The starting point of the drawing. Tuple of floats
@@ -86,7 +90,8 @@ class LSystem:
           - seq_colors: List of color strings to cycle when changing the color
                 of the line. Defaults to empty list (no change of color).
         '''
-        self.angle = angle
+        self.left_angle = left_angle if left_angle is not None else angle
+        self.right_angle = right_angle if right_angle is not None else angle
         self.actions = actions if actions else LSystem.DEFAULT_ACTIONS
         self.rules = rules
         self.axiom = axiom
@@ -132,8 +137,11 @@ class LSystem:
         turtle.title(json_filename)
         return LSystem(**json_dict, trace=trace)
 
-    def _get_angle(self):
-        return ((random.random() * 2 - 1) * self.rand_angle + 1) * self.angle
+    def _get_angle(self, base_angle):
+        if self.rand_angle:
+            return ((random.random() * 2 - 1) * self.rand_angle + 1) * base_angle
+        else:
+            return base_angle
         
     def _get_unit(self, unit):
         return ((random.random() * 2 - 1) * self.rand_unit + 1) * unit
@@ -158,11 +166,11 @@ class LSystem:
         ''' Implements the `left` action. '''
         # turnstack simply aggregates all turns before a forward move.
         # This way we get better drawings with rounded corners.
-        self.turnstack += self._get_angle()
+        self.turnstack += self._get_angle(self.left_angle)
 
     def right(self, unit):
         ''' Implements the `right` action. '''
-        self.turnstack -= self._get_angle()
+        self.turnstack -= self._get_angle(self.right_angle)
 
     def _turn(self):
         # Executes the accumulated turns in the turnstack.
