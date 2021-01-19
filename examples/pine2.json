@@ -1,0 +1,13 @@
+{
+    "left_angle": 12,
+    "right_angle": 16,
+    "rules": {
+        "F": "FF+[+F-F-F]-[-F+F+F]"
+    },
+    "axiom": "F",
+    "draw": {
+        "start_point": [-0.2, -0.6],
+        "default_order": 3,
+        "default_unit": 15
+    }
+}

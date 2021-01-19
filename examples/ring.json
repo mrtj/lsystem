@@ -1,0 +1,13 @@
+{
+    "angle": 9,
+    "rules": {
+        "X": "X+YFFF+",
+        "Y": "-F[+X-FF+X]XX-Y"
+    },
+    "axiom": "FX",
+    "draw": {
+        "start_point": [0.4, 0],
+        "default_order": 7,
+        "default_unit": 5
+    }
+}

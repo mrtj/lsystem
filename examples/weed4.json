@@ -1,0 +1,13 @@
+{
+    "angle": 20,
+    "rules": {
+        "X": "F[+X]F[-X]+X",
+        "F": "FF"
+    },
+    "axiom": "X",
+    "draw": {
+        "start_point": [0, -0.8],
+        "default_order": 7,
+        "default_unit": 2
+    }
+}
